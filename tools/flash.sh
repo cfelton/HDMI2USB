@@ -59,12 +59,12 @@ fi
 rm $XSVF || true
 (
 	cd $SCRIPT_PATH/..
-	. "$XILINX_PATH/14.7/ISE_DS/settings64.sh"
+	. "$XILINX_PATH/ISE_DS/settings64.sh"
 	make xsvf
 )
 [ -e $XVSF ]
 
-HEX=$SCRIPT_PATH/../cypress/output/hdmi2usb.hex
+HEX=$SCRIPT_PATH/../cypress/hdmi2usb.hex
 if [ ! -e $HEX ]; then
 	echo "Please build the Cypress firmware by going into the 'cypress' directory and typing 'make'"
 	exit 1

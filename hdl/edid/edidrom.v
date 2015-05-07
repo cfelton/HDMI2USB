@@ -29,23 +29,25 @@
 //////////////////////////////////////////////////////////////////////////////
 /*!
  ROM for EDID DVI structure only, not for HDMI.
-*/
+ */
 
 module edidrom (clk,adr,data);
 
-input clk;
-input [7:0] adr;
-output [7:0] data;
-reg [7:0] data ;
+    input clk;
+    input [7:0] adr;
+    output [7:0] data;
+    reg [7:0] 	 data ;
 
-reg[7:0] mem [1023:0] /* synthesis syn_ramstyle="block_ram" */;
+    reg [7:0] 	 mem [1023:0] /* synthesis syn_ramstyle="block_ram" */;
 
-initial $readmemh("..//hdl//edid//edidrom.hex", mem);       
+    initial begin
+	$readmemh("./edidrom.hex", mem);
+    end
 
 
-always @ (posedge clk)
-begin
-data <= mem[adr];
-end
+    always @ (posedge clk)
+      begin
+	  data <= mem[adr];
+      end
 
 endmodule
